@@ -1,10 +1,11 @@
 import { Surface } from '@react-native-material/core';
 import { Image, Text } from 'react-native';
+import { TouchableHighlight } from 'react-native-gesture-handler';
 
 
 export const FoodCard = (props) => {
   return (
-    <>
+    <TouchableHighlight onPress={() => props.onClick(props.id)} >
       <Surface
         elevation={2}
         category='large'
@@ -27,6 +28,6 @@ export const FoodCard = (props) => {
         </Text>
         <Image source={props.imagen} />
       </Surface>
-    </>
+    </TouchableHighlight>
   );
 };

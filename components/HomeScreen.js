@@ -12,13 +12,17 @@ export const Home = ({ navigation }) => {
         marginTop: 15,
       }}
     >
-      <Stack spacing={2}  style={styles}>
+      <Stack spacing={2} style={styles}>
         {foodTypes.map((comida, index) => {
           return (
             <FoodCard
               key={index}
               platillo={comida.titulo}
               imagen={comida.imagen}
+              onClick={() => {
+                navigation.navigate('FoodList', {id: comida.id});
+                console.log('value of id:', comida.id);
+              }}
             />
           );
         })}
