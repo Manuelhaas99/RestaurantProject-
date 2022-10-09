@@ -74,4 +74,11 @@ const comidas = {
 
 }
 
+export const foodTypes = [
+  {titulo: "Cocina fria", imagen: require('./assets/favicon.png')},
+  {titulo: "Cocina caliente", imagen: require('./assets/favicon.png')},
+  {titulo: "Parrilla", imagen: require('./assets/favicon.png')},
+  {titulo: "Bebidas", imagen: require('./assets/favicon.png')}
+]
+
 export default comidas

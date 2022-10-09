@@ -1,12 +1,29 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from 'react-native';
+import { foodTypes } from '../food';
+import { FoodCard } from './FoodCard';
+import { Stack } from '@react-native-material/core';
+import { FlatList, ScrollView } from 'react-native-gesture-handler';
 
-export const Home = ({navigation}) => {
+export const Home = ({ navigation }) => {
+  console.log('In food card');
   return (
-    <>
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
-    </>
+    <ScrollView
+      style={{
+        marginTop: 15,
+      }}
+    >
+      <Stack spacing={2}  style={styles}>
+        {foodTypes.map((comida, index) => {
+          return (
+            <FoodCard
+              key={index}
+              platillo={comida.titulo}
+              imagen={comida.imagen}
+            />
+          );
+        })}
+      </Stack>
+    </ScrollView>
   );
 };
 
