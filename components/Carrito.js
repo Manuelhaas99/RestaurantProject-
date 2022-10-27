@@ -1,37 +1,34 @@
 import React, { useState } from 'react';
 import { View, Text, Modal, StyleSheet, Pressable } from 'react-native';
+import { Context } from '../Context';
+import { FoodWithDescription } from './FoodWithDescription';
+import { CarritoDescripcion } from './CarritoDescripcion';
 
 export const Carrito = (props) => {
-  const [modalVisible, setModalVisible] = useState(false);
+  
+  const {items} = React.useContext(Context);
+  console.log({items})
+
+
   return (
     <View style={styles.centeredView}>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Hello World!</Text>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}
-            >
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </Pressable>
-          </View>
-        </View>
-      </Modal>
-      <Pressable
-        style={[styles.button, styles.buttonOpen]}
-        onPress={() => setModalVisible(true)}
-      >
-        <Text style={styles.textStyle}>Show Modal</Text>
-      </Pressable>
+      <Text>
+        Este es tu carrito
+      </Text>
+      <Text>
+        Tienes: { items.length > 0 && items.map((item, index) => {
+          
+          return (
+            <View key={index}>
+              <CarritoDescripcion
+                platillo={item.platillo}
+                precios={item.precio}
+                cantidad={item.cantidad}
+              />
+            </View>
+          );
+        })}
+      </Text>
     </View>
   );
 };

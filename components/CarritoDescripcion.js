@@ -1,22 +1,9 @@
 import React from 'react';
+import { Text, View } from 'react-native';
 import { Stack, Surface } from '@react-native-material/core';
-import { View, Text, Pressable } from 'react-native';
-import { Context } from '../Context';
 
-export const FoodWithDescription = (props) => {
-  const { items, updateItems } = React.useContext(Context);
-  const [cantidad, setCantidad] = React.useState(0);
 
-  const updateCantidadLocal = () => {
-    setCantidad(cantidad + 1);
-    updateItems({
-      id: props.id,
-      cantidad: cantidad + 1,
-      platillo: props.platillo,
-      precio: props.precios,
-    });
-  };
-
+export const CarritoDescripcion = (props) => {
   return (
     <View>
       <Stack>
@@ -46,11 +33,6 @@ export const FoodWithDescription = (props) => {
             {props.platillo}
           </Text>
           <Text
-            style={{ alignSelf: 'flex-start', fontSize: 20, marginTop: 15 }}
-          >
-            {props.descripcion}
-          </Text>
-          <Text
             style={{
               alignSelf: 'center',
               fontSize: 20,
@@ -60,10 +42,7 @@ export const FoodWithDescription = (props) => {
           >
             Precio: ${props.precios}
           </Text>
-          <Pressable onPress={updateCantidadLocal}>
-            <Text>Agregar</Text>
-          </Pressable>
-          <Text>{cantidad}</Text>
+          <Text>{props.cantidad}</Text>
         </Surface>
       </Stack>
     </View>
