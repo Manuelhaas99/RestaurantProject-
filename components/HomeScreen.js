@@ -1,8 +1,10 @@
-import { View, Text, StyleSheet } from 'react-native';
+import Icon from '@expo/vector-icons/MaterialCommunityIcons';
+import { Stack, View } from '@react-native-material/core';
+import React from 'react';
+import { StyleSheet } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { foodTypes } from '../food';
 import { FoodCard } from './FoodCard';
-import { Stack } from '@react-native-material/core';
-import { FlatList, ScrollView } from 'react-native-gesture-handler';
 
 export const Home = ({ navigation }) => {
   console.log('In food card');
@@ -12,21 +14,19 @@ export const Home = ({ navigation }) => {
         marginTop: 15,
       }}
     >
-      <Stack spacing={2} style={styles}>
-        {foodTypes.map((comida, index) => {
-          return (
-            <FoodCard
-              key={index}
-              platillo={comida.titulo}
-              imagen={comida.imagen}
-              onClick={() => {
-                navigation.navigate('FoodList', {id: comida.id});
-                console.log('value of id:', comida.id);
-              }}
-            />
-          );
-        })}
-      </Stack>
+      {foodTypes.map((comida, index) => {
+        return (
+          <FoodCard
+            key={index}
+            platillo={comida.titulo}
+            imagen={comida.imagen}
+            onClick={() =>{
+              navigation.navigate('FoodList', { id: comida.id });
+              console.log('value of id:', comida.id);
+            }}
+          />
+        );
+      })}
     </ScrollView>
   );
 };

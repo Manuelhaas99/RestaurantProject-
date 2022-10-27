@@ -1,11 +1,10 @@
 import { Surface } from '@react-native-material/core';
-import { Image, Text } from 'react-native';
+import { Image, Pressable, Text, StyleSheet } from 'react-native';
 import { TouchableHighlight } from 'react-native-gesture-handler';
-
 
 export const FoodCard = (props) => {
   return (
-    <TouchableHighlight onPress={() => props.onClick(props.id)} >
+    <TouchableHighlight onPress={() => props.onClick(props.id)}>
       <Surface
         elevation={2}
         category='large'
@@ -27,7 +26,28 @@ export const FoodCard = (props) => {
           {props.platillo}
         </Text>
         <Image source={props.imagen} />
+        <Pressable
+          onPress={() => props.onClick(props.id)}
+          style={[styles.centeredView, styles.button]}
+        >
+          <Text>Ver</Text>
+        </Pressable>
       </Surface>
     </TouchableHighlight>
   );
 };
+
+const styles = StyleSheet.create({
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+    width: 100
+  },
+  button: {
+    borderRadius: 8,
+    padding: 10,
+    backgroundColor: "#F00",
+  },
+});
