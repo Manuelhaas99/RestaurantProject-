@@ -1,25 +1,29 @@
-import 'react-native-gesture-handler';
-import { StyleSheet, Text, View } from 'react-native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import 'react-native-gesture-handler';
+import { Carrito } from './components/Carrito';
+import { CarritoIcono } from './components/CarritoIcono';
+import { FoodListScreen } from './components/FoodListScreen';
 import { Home } from './components/HomeScreen';
-import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 
-const Drawer = createDrawerNavigator();
+
+const Stack = createNativeStackNavigator()
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRoute='Home'>
-        <Drawer.Screen
+      <Stack.Navigator initialRoute='Home'>
+        <Stack.Screen
           name='Home'
           component={Home}
-          options={{
+          options={({route, navigation}) => ({
             title: 'Restaurante',
-            headerRight: () => <Icon name='cart' size={30} color='black' style={{paddingRight: 15}} />,
-          }}
+            headerRight: () => CarritoIcono(navigation),
+          })}
         />
-      </Drawer.Navigator>
+        <Stack.Screen name='FoodList' component={FoodListScreen} />
+        <Stack.Screen name='Cart' component={Carrito} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
