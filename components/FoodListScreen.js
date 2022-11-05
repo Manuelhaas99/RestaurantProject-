@@ -7,7 +7,6 @@ export const FoodListScreen = (props) => {
   const idToRetrieve = props.route.params.id;
   const foodsToDisplay = foods[idToRetrieve];
 
-  console.log(foodsToDisplay)
 
   const renderFoodWithDescription = () => {
     return foodsToDisplay.map((item, index) => {

@@ -14,14 +14,11 @@ export default function App() {
   const [items, setItems] = React.useState(initalContext.items);
 
   const updateItems = (item) => {
-    console.log('valor de item', item);
-    console.log('ITEEEMSSS alvvvv',{items: items})
     setItems([item, ...items]);
-    console.log('ITEEEMSSS',{items: items})
   };
 
   return (
-    <Context.Provider value={{items, updateItems}}>
+    <Context.Provider value={{ items, updateItems }}>
       <NavigationContainer>
         <Stack.Navigator initialRoute='Home'>
           <Stack.Screen

@@ -1,79 +1,57 @@
-import React, { useState } from 'react';
-import { View, Text, Modal, StyleSheet, Pressable } from 'react-native';
+import { Button } from '@react-native-material/core';
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { Context } from '../Context';
 import { FoodWithDescription } from './FoodWithDescription';
-import { CarritoDescripcion } from './CarritoDescripcion';
 
 export const Carrito = (props) => {
-  
-  const {items} = React.useContext(Context);
-  console.log({items})
+  const { items } = React.useContext(Context);
 
-
+  let total = 0;
   return (
-    <View style={styles.centeredView}>
-      <Text>
-        Este es tu carrito
-      </Text>
-      <Text>
-        Tienes: { items.length > 0 && items.map((item, index) => {
-          
-          return (
-            <View key={index}>
-              <CarritoDescripcion
-                platillo={item.platillo}
-                precios={item.precio}
-                cantidad={item.cantidad}
-              />
-            </View>
-          );
-        })}
-      </Text>
-    </View>
+    <>
+      <ScrollView>
+        {items.length > 0 &&
+          items.map((item, index) => {
+            total += item.precio * item.cantidad
+            const totalToDisplay = item.precio * item.cantidad
+            return (
+              <View key={index} style={styles.itemView}>
+                <FoodWithDescription
+                  platillo={item.platillo}
+                  precios={item.precio}
+                  cantidad={item.cantidad}
+                  total={totalToDisplay}
+                  styles={styles.description}
+                />
+              </View>
+            );
+          })}
+      </ScrollView>
+      <Button style={styles.centerButton} title={`Pagar alv $${total}`}/>
+    </>
   );
 };
 
-
 const styles = StyleSheet.create({
   centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+    flexDirection: 'row',
   },
-  modalView: {
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5
+  description: {
+    alignSelf: 'flex-start',
+    fontSize: 20,
   },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2
+  itemView: {
+    marginBottom: 10,
+    marginTop: 5,
   },
-  buttonOpen: {
-    backgroundColor: "#F194FF",
+  centerButton: {
+    marginBottom: 7,
+    marginLeft: 4,
+    marginRight: 4
   },
-  buttonClose: {
-    backgroundColor: "#2196F3",
-  },
-  textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center"
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: "center"
-  }
 });

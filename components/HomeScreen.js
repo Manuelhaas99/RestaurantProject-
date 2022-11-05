@@ -22,7 +22,6 @@ export const Home = ({ navigation }) => {
             imagen={comida.imagen}
             onClick={() =>{
               navigation.navigate('FoodList', { id: comida.id });
-              console.log('value of id:', comida.id);
             }}
           />
         );
