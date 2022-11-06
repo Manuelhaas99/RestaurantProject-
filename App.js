@@ -13,8 +13,8 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   const [items, setItems] = React.useState(initalContext.items);
 
-  const updateItems = (item) => {
-    setItems([item, ...items]);
+  const updateItems = (item, index) => {
+    setItems(item);
   };
 
   return (

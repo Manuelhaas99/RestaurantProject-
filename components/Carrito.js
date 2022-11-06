@@ -6,7 +6,7 @@ import { Context } from '../Context';
 import { FoodWithDescription } from './FoodWithDescription';
 
 export const Carrito = (props) => {
-  const { items } = React.useContext(Context);
+  const { items, updateItems } = React.useContext(Context);
 
   let total = 0;
   return (
@@ -14,8 +14,8 @@ export const Carrito = (props) => {
       <ScrollView>
         {items.length > 0 &&
           items.map((item, index) => {
-            total += item.precio * item.cantidad
-            const totalToDisplay = item.precio * item.cantidad
+            total += item.precio * item.cantidad;
+            const totalToDisplay = item.precio * item.cantidad;
             return (
               <View key={index} style={styles.itemView}>
                 <FoodWithDescription
@@ -29,7 +29,13 @@ export const Carrito = (props) => {
             );
           })}
       </ScrollView>
-      <Button style={styles.centerButton} title={`Pagar alv $${total}`}/>
+      {items.length > 0 && (
+        <Button
+          style={styles.centerButton}
+          title={`Total a pagar $${total}`}
+          onPress={() => updateItems([])}
+        />
+      )}
     </>
   );
 };
@@ -52,6 +58,6 @@ const styles = StyleSheet.create({
   centerButton: {
     marginBottom: 7,
     marginLeft: 4,
-    marginRight: 4
+    marginRight: 4,
   },
 });

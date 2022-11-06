@@ -9,13 +9,23 @@ export const FoodWithDescription = (props) => {
   const [cantidad, setCantidad] = React.useState(0);
 
   const updateCantidadLocal = () => {
-    setCantidad(cantidad + 1);
-    updateItems({
+    const itemsN = [...items];
+    const item = {
       id: props.id,
       cantidad: cantidad + 1,
       platillo: props.platillo,
       precio: props.precios,
-    });
+    };
+    const index = itemsN.findIndex((element) => element.id === item.id);
+    if (index >= 0) {
+      const obj = itemsN[index];
+      obj.cantidad = cantidad + 1;
+      itemsN[index] = obj;
+      updateItems(itemsN);
+    } else {
+      updateItems([item, ...itemsN]);
+    }
+    setCantidad(cantidad + 1);
   };
 
   return (
@@ -41,9 +51,11 @@ export const FoodWithDescription = (props) => {
               updateCantidadLocal={updateCantidadLocal}
             />
           </View>
-          {props.total && <View style={[styles.total, styles.description]} >
-            <Text style={{fontSize: 20}} >Total: {props.total}</Text>
-          </View>}
+          {props.total && (
+            <View style={[styles.total, styles.description]}>
+              <Text style={{ fontSize: 20 }}>Total: {props.total}</Text>
+            </View>
+          )}
         </Surface>
       </Stack>
     </View>
@@ -88,5 +100,5 @@ const styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'flex-end',
-  }
+  },
 });
