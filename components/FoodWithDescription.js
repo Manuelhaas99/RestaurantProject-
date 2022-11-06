@@ -8,24 +8,25 @@ export const FoodWithDescription = (props) => {
   const { items, updateItems } = React.useContext(Context);
   const [cantidad, setCantidad] = React.useState(0);
 
-  const updateCantidadLocal = () => {
+  const updateCantidadLocal = (restar) => {
+    const newCantidad = !restar ? cantidad + 1 : cantidad - 1 
     const itemsN = [...items];
     const item = {
       id: props.id,
-      cantidad: cantidad + 1,
+      cantidad: newCantidad,
       platillo: props.platillo,
       precio: props.precios,
     };
     const index = itemsN.findIndex((element) => element.id === item.id);
     if (index >= 0) {
       const obj = itemsN[index];
-      obj.cantidad = cantidad + 1;
+      obj.cantidad = newCantidad;
       itemsN[index] = obj;
       updateItems(itemsN);
     } else {
       updateItems([item, ...itemsN]);
     }
-    setCantidad(cantidad + 1);
+    setCantidad(newCantidad);
   };
 
   return (

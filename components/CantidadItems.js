@@ -3,11 +3,11 @@ import { StyleSheet, Text, View, Pressable } from 'react-native';
 export const CantidadItems = ({ cantidad, updateCantidadLocal }) => {
   return (
     <View style={styles.container}>
-      <Pressable>
+      <Pressable onPress={()=> updateCantidadLocal(true)}>
         <Text style={[styles.button, styles.font]}>-</Text>
       </Pressable>
       <Text style={[styles.button, styles.font]}>{cantidad}</Text>
-      <Pressable onPress={updateCantidadLocal}>
+      <Pressable onPress={() => updateCantidadLocal(false)}>
         <Text style={[styles.button, styles.font]}>+</Text>
       </Pressable>
     </View>

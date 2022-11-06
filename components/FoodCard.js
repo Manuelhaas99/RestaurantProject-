@@ -1,15 +1,15 @@
 import { Surface } from '@react-native-material/core';
-import { Image, Pressable, Text, StyleSheet } from 'react-native';
+import { Image, Pressable, Text, StyleSheet, View } from 'react-native';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 
 export const FoodCard = (props) => {
   return (
-    <TouchableHighlight onPress={() => props.onClick(props.id)}>
       <Surface
         elevation={2}
         category='large'
         style={{
           flex: 1,
+          flexDirection: 'column',
           width: '95%',
           height: 'auto',
           alignItems: 'center',
@@ -19,13 +19,19 @@ export const FoodCard = (props) => {
           paddingBottom: 25,
           paddingEnd: 25,
           paddingStart: 25,
-          marginTop: 10,
+          marginTop: 5,
+          marginBottom: 10
         }}
       >
-        <Text style={{ alignSelf: 'flex-start', fontSize: 25 }}>
+        <Text style={{ alignSelf: 'flex-start', fontSize: 25, marginTop: 25 }}>
           {props.platillo}
         </Text>
-        <Image source={props.imagen} />
+        <View style={{ width: '50%', height: '50%', marginTop: 15 }}>
+          <Image
+            style={{ flex: 1, width: undefined, height: undefined, resizeMode: 'cover' }}
+            source={props.imagen}
+          />
+        </View>
         <Pressable
           onPress={() => props.onClick(props.id)}
           style={[styles.centeredView, styles.button]}
@@ -33,21 +39,20 @@ export const FoodCard = (props) => {
           <Text>Ver</Text>
         </Pressable>
       </Surface>
-    </TouchableHighlight>
   );
 };
 
 const styles = StyleSheet.create({
   centeredView: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22,
-    width: 100
+    marginTop: 4,
+    width: 100,
   },
   button: {
     borderRadius: 8,
-    padding: 10,
-    backgroundColor: "#F00",
+    padding: 5,
+    backgroundColor: '#F00',
+    marginBottom: 25
   },
 });

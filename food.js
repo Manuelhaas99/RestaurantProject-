@@ -94,19 +94,19 @@ export const foodTypes = [
   {
     id: 'cocina_fria',
     titulo: 'Cocina fria',
-    imagen: require('./assets/favicon.png'),
+    imagen: require('./assets/tostada.jpeg'),
   },
   {
     id: 'cocina_caliente',
     titulo: 'Cocina caliente',
-    imagen: require('./assets/favicon.png'),
+    imagen: require('./assets/caliente.jpeg'),
   },
   {
     id: 'parrilla',
     titulo: 'Parrilla',
-    imagen: require('./assets/favicon.png'),
+    imagen: require('./assets/parrilla.jpeg'),
   },
-  { id: 'Bebidas', titulo: 'Bebidas', imagen: require('./assets/favicon.png') },
+  { id: 'Bebidas', titulo: 'Bebidas', imagen: require('./assets/bebidas.jpeg') },
 ];
 
 export default comidas;
