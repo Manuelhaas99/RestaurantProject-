@@ -3,7 +3,9 @@ import React from 'react';
 
 export const initalContext = {
   items: [],
-  updateItems: () => {}
+  ordenes: [],
+  updateItems: () => {},
+  updateOrdenes: () => {}
 };
 
 export const Context = React.createContext(initalContext);

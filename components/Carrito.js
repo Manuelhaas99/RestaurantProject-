@@ -6,9 +6,22 @@ import { Context } from '../Context';
 import { FoodWithDescription } from './FoodWithDescription';
 
 export const Carrito = (props) => {
-  const { items, updateItems } = React.useContext(Context);
+  const { items, ordenes, updateItems, updateOrdenes } = React.useContext(Context);
 
   let total = 0;
+  const updateValues = () => {
+    const newOrders = [...ordenes]
+    const newItem = {
+      id: Math.random() * 10000,
+      date: Date.now(),
+      data: [...items],
+      total
+    }
+    newOrders.push(newItem)
+    updateOrdenes(newOrders)
+    updateItems([])
+  }
+
   return (
     <>
       <ScrollView>
@@ -33,7 +46,7 @@ export const Carrito = (props) => {
         <Button
           style={styles.centerButton}
           title={`Total a pagar $${total}`}
-          onPress={() => updateItems([])}
+          onPress={() => updateValues()}
         />
       )}
     </>

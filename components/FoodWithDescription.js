@@ -10,6 +10,7 @@ export const FoodWithDescription = (props) => {
 
   const updateCantidadLocal = (restar) => {
     const newCantidad = !restar ? cantidad + 1 : cantidad - 1 
+    if (newCantidad < 0) return;
     const itemsN = [...items];
     const item = {
       id: props.id,
